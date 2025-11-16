@@ -1,0 +1,44 @@
+# --- Backend (Spring Boot) ---
+/backend/target/
+*.class
+*.jar
+*.war
+*.ear
+*.log
+/.idea/
+/*.iml
+/.project
+/.classpath
+/.settings/
+bin/
+backend-app/mvnw
+backend-app/mvnw.cmd
+
+# --- Frontend (React / Vite) ---
+/frontend-spa/node_modules/
+/frontend-spa/dist/
+/frontend-spa/.vite/
+frontend-spa/.env.local
+frontend-spa/.env*.local
+
+# --- OS / IDE / Misc ---
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.vscode/
+.env
+
+
+# --- Eclipse project files ---
+/backend/.classpath
+/backend/.project
+/backend/.settings/
+
+
+# --- Additional files ---
+*.txt
+*.sql
+
+# --- Additional folders ---
+/sql-scripts
