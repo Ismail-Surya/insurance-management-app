@@ -1,0 +1,4 @@
+CREATE TABLE ima_product_plan_type (
+	product_plan_id INT AUTO_INCREMENT PRIMARY KEY,
+	product_plan_name VARCHAR (100) UNIQUE NOT NULL
+);

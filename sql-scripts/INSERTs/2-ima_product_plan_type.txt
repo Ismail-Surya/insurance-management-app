@@ -1,0 +1,5 @@
+INSERT INTO ima_product_plan_type
+(product_plan_name)
+VALUES
+('Assured Income Plan'),
+('Guaranteed Wealth Plan');

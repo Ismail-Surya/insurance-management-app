@@ -1,0 +1,8 @@
+INSERT INTO ima_occupation
+(occupation_name)
+VALUES
+('Engineer'),
+('Teacher'),
+('Doctor'),
+('Business Owner'),
+('Artist');

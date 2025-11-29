@@ -1,0 +1,4 @@
+CREATE TABLE ima_gender (
+	gender_code CHAR (1) PRIMARY KEY,
+    gender_description VARCHAR (50) NOT NULL
+);

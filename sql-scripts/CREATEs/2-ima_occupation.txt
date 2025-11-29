@@ -1,0 +1,4 @@
+CREATE TABLE ima_occupation (
+	occupation_id INT PRIMARY KEY AUTO_INCREMENT,
+    occupation_name VARCHAR (100) NOT NULL UNIQUE
+);

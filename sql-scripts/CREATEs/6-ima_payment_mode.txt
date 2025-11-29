@@ -1,0 +1,4 @@
+CREATE TABLE ima_payment_mode (
+	payment_mode_id INT PRIMARY KEY AUTO_INCREMENT,
+    mode_name VARCHAR (50) NOT NULL UNIQUE
+);

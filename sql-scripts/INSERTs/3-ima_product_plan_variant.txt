@@ -1,0 +1,6 @@
+INSERT INTO ima_product_plan_variant
+(product_plan_id, variant_name, variant_code)
+VALUES
+(1, 'Short Term', 'AIP_ST'),
+(1, 'Long Term', 'AIP_LT'),
+(1, 'Life Long', 'AIP_LL');

@@ -1,0 +1,9 @@
+CREATE TABLE ima_product_plan_variant (
+	variant_id INT PRIMARY KEY AUTO_INCREMENT,
+    product_plan_id INT NOT NULL,
+    variant_name VARCHAR (100) NOT NULL,
+    variant_code VARCHAR (100) UNIQUE NOT NULL,
+    FOREIGN KEY (product_plan_id) REFERENCES ima_product_plan_type (product_plan_id),
+    UNIQUE (product_plan_id, variant_code),
+    UNIQUE (product_plan_id, variant_name)
+);

@@ -1,0 +1,7 @@
+INSERT INTO ima_payment_mode
+(mode_name)
+VALUES
+('Yearly'),
+('Half-Yearly'),
+('Quarterly'),
+('Monthly');
