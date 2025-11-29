@@ -1,3 +1,0 @@
-INSERT INTO ima_gender (gender_code, gender_description) VALUES
-('M', 'Male'),
-('F', 'Female')

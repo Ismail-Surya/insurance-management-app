@@ -37,8 +37,7 @@ Thumbs.db
 
 
 # --- Additional files ---
-*.txt
+
 *.sql
 
 # --- Additional folders ---
-/sql-scripts
