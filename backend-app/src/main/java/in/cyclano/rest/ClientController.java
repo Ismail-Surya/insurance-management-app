@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import in.cyclano.dto.ApiResponse;
 import in.cyclano.model.Client;
 import in.cyclano.service.ClientService;
 
@@ -25,26 +26,31 @@ public class ClientController {
 	}
 	
 	@GetMapping
-	public ResponseEntity <List <Client>> getAllClients () {
-		List <Client> theClients = clientService.getAllClients(); 
-		return ResponseEntity.ok(theClients);
+	public ResponseEntity <ApiResponse <List <Client>>> getAllClients () {
+		List <Client> theClients = clientService.getAllClients();
+		ApiResponse <List <Client>> response = new ApiResponse <> ("success", "Clients retrieved successfully", theClients);
+		return ResponseEntity.ok(response);
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity <Client> getClientById (@PathVariable int id) {
+	public ResponseEntity <ApiResponse <Client>> getClientById (@PathVariable int id) {
 		return clientService.getClientById(id)
-				.map(ResponseEntity::ok)
-				.orElse(ResponseEntity.notFound().build());
+				.map(client -> {
+					ApiResponse <Client> response = new ApiResponse <> ("success", "Client retrieved successfully", client);
+					return ResponseEntity.ok(response);
+				})
+				.orElseGet(() -> {
+					ApiResponse<Client> response =
+                            new ApiResponse<>("error", "Client not found with id " + id, null);
+                    return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+				});
 	}
 	
 	@PostMapping
 	public ResponseEntity <?> createClient (@RequestBody Client client) {
-		try {
-			Client savedClient = clientService.createClient(client);
-			return ResponseEntity.status(HttpStatus.CREATED).body(savedClient);
-		} catch (RuntimeException exc) {
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Could not create client. Please try again later - " + exc.getMessage());
-		}
+		Client savedClient = clientService.createClient(client);
+		ApiResponse <Client> response = new ApiResponse <> ("success", "Client created successfully", savedClient);
+		return ResponseEntity.status(HttpStatus.CREATED).body(response);
 	}
 	
 }

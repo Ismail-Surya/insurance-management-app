@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import in.cyclano.model.Client;
 import in.cyclano.repo.ClientRepository;
@@ -30,20 +31,20 @@ public class ClientService {
 		return clientRepository.findById(clientId);
 	}
 	
-	public Client createClient (Client client) {
-		try {
-			Integer id = clientRepository.save(client);
-			if (id != null) {
-				client.setClientId(id);
-			} else {
-				logger.warn("Client was saved but no ID was returned");
-			}
-			return client;
-			
-		} catch (DataAccessException exc) {
-			logger.error("Error saving client: {} " + exc.getMessage(), exc);
+	@Transactional
+    public Client createClient(Client client) {
+        try {
+            Integer id = clientRepository.save(client);
+            if (id != null) {
+                client.setClientId(id);
+            } else {
+                logger.warn("Client was saved but no ID was returned");
+            }
+            return client;
+        } catch (DataAccessException exc) {
+        	logger.error("Error saving client: {} " + exc.getMessage(), exc);
             throw new RuntimeException("Could not save client", exc);
-		}
-	}
+        }
+    }
 	
 }
