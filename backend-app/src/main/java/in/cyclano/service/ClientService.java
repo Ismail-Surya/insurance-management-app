@@ -47,4 +47,19 @@ public class ClientService {
         }
     }
 	
+	@Transactional
+	public Client updateClient (Client client) {
+		try {
+			int rows = clientRepository.update(client);
+			
+			if (rows == 0) {
+				throw new RuntimeException ("No client found with id " + client.getClientId());
+			}
+			return client;
+		} catch (DataAccessException exc) {
+			logger.error("Error updating client: {} " + exc.getMessage(), exc);
+            throw new RuntimeException("Could not update client", exc);
+		}
+	}
+	
 }

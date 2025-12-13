@@ -6,9 +6,9 @@ import java.util.Optional;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
@@ -50,6 +50,12 @@ public class ClientRepository {
 		Number key = keyHolder.getKey();
 		
 		return key != null ? key.intValue() : null;
+	}
+	
+	public int update (Client client) {
+		String sql = "UPDATE ima_clients SET client_type = :clientType, first_name = :firstName, middle_name = :middleName, last_name = :lastName, date_of_birth = :dateOfBirth, legal_business_name = :legalBusinessName, dba_name = :dbaName, business_structure = :businessStructure, ein = :ein, date_established = :dateEstablished, id_type = :idType, id_number = :idNumber, id_issue_country = :idIssueCountry, id_expiry_date = :idExpiryDate, physical_address_line1 = :physicalAddressLine1, physical_address_line2 = :physicalAddressLine2, physical_city = :physicalCity, physical_state = :physicalState, physical_zip_code = :physicalZipCode, physical_country = :physicalCountry, mailing_same_as_physical = :mailingSameAsPhysical, mailing_address_line1 = :mailingAddressLine1, mailing_address_line2 = :mailingAddressLine2, mailing_city = :mailingCity, mailing_state = :mailingState, mailing_zip_code = :mailingZipCode, mailing_country = :mailingCountry, business_description = :businessDescription, sic_code = :sicCode, naics_code = :naicsCode, annual_gross_revenue = :annualGrossRevenue, annual_payroll = :annualPayroll, employees_full_time = :employeesFullTime, employees_part_time = :employeesPartTime, employees_seasonal = :employeesSeasonal, ownership_details = :ownershipDetails, primary_contact_name = :primaryContactName, primary_contact_phone = :primaryContactPhone, primary_contact_email = :primaryContactEmail, status = :status WHERE client_id = :clientId";
+		
+		return namedParameterJdbcTemplate.update(sql, new BeanPropertySqlParameterSource (client));
 	}
 	
 	/* public Client saveAlternate (Client client) {
