@@ -1,0 +1,5 @@
+CREATE TABLE ima_roles_for_users (
+	user_id INT NOT NULL REFERENCES ima_users(id),
+    role_id INT NOT NULL REFERENCES ima_roles(id),
+    PRIMARY KEY (user_id, role_id)
+);

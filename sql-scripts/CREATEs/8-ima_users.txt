@@ -1,0 +1,6 @@
+CREATE TABLE ima_users (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR (100) UNIQUE NOT NULL,
+    password_hash VARCHAR (200) NOT NULL,
+    enabled BOOLEAN NOT NULL DEFAULT TRUE
+);
