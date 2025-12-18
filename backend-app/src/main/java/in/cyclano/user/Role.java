@@ -1,4 +1,4 @@
-package in.cyclano.model;
+package in.cyclano.user;
 
 public class Role {
 
